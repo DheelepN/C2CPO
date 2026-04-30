@@ -2,7 +2,7 @@
   <h1>🛡️ C2CPO</h1>
   <h3>Computer-to-Computer Protocol Obfuscation</h3>
   <p>
-    An open-source SDK that wraps internal service-to-service API communication in an obfuscated, custom-encoded protocol layer.
+    The <strong>Machine-to-Machine (M2M) framework</strong> within the broader <strong>Security Linguistics</strong> academic domain. It is an open-source SDK that wraps internal service-to-service API communication in an obfuscated, custom-encoded protocol layer.
   </p>
 
   <p>
@@ -39,7 +39,7 @@
 
 ## 🔍 What This Is
 
-**C2CPO** is a **service-to-service security SDK** designed exclusively for internal infrastructure (e.g., backend microservices, cloud functions). 
+**C2CPO** is the **Machine-to-Machine (M2M) framework** of the Security Linguistics domain. It functions as a **service-to-service security SDK** designed exclusively for internal infrastructure (e.g., backend microservices, cloud functions). 
 
 Unlike traditional Web Application Firewalls (WAFs) or API Gateways that attempt to *probabilistically* guess if an incoming payload is malicious, C2CPO takes a **deterministic** approach. It scrambles the API contract itself. By mapping standard JSON payloads into an obfuscated format, **any request using standard, human-readable REST/JSON field names is immediately rejected.**
 
