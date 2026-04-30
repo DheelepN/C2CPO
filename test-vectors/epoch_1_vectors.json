@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "epoch_number": 1,
+  "master_secret_hex": "0000000000000000000000000000000000000000000000000000000000000001",
+  "k_epoch_hex": "eaea153613190c3757153cefd4ce3963a087d20c7cf4de0cfc9f29efbd489540",
+  "permutation_seed": 12664720978712792139,
+  "vectors": [
+    {
+      "standard_field": "amount",
+      "obfuscated_token": "M1N9L0K2",
+      "hmac_input": "epoch_1"
+    },
+    {
+      "standard_field": "user_id",
+      "obfuscated_token": "P8Q3J4R5",
+      "hmac_input": "epoch_1"
+    },
+    {
+      "standard_field": "account_id",
+      "obfuscated_token": "T6S7V8W9",
+      "hmac_input": "epoch_1"
+    },
+    {
+      "standard_field": "currency",
+      "obfuscated_token": "X1Y2Z3A4",
+      "hmac_input": "epoch_1"
+    },
+    {
+      "standard_field": "timestamp",
+      "obfuscated_token": "B5C6D7E8",
+      "hmac_input": "epoch_1"
+    }
+  ]
+}

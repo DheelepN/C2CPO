@@ -1,0 +1,21 @@
+# docker-compose.yml
+version: "3.8"
+services:
+  consumer:
+    build:
+      context: ../
+      dockerfile: demo/consumer.Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  producer:
+    build:
+      context: ../
+      dockerfile: demo/producer.Dockerfile
+    depends_on:
+      - consumer
+    environment:
+      - PYTHONUNBUFFERED=1
+      - CONSUMER_URL=http://consumer:8080

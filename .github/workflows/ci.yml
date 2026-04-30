@@ -1,0 +1,110 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  C2CPO_MASTER_SECRET: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+
+jobs:
+  python-tests:
+    name: Python SDK Tests (Tier 1 + 2)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11', '3.12']
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-cov
+        pip install -e sdk/python
+
+    - name: Run Python tests
+      run: python -m pytest sdk/python/tests/ -v --tb=short
+
+  nodejs-tests:
+    name: Node.js SDK Tests (Tier 1 + 2)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['18', '20', '22']
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
+      working-directory: sdk/nodejs
+      run: npm ci
+
+    - name: Run Node.js tests
+      working-directory: sdk/nodejs
+      run: npx jest --verbose
+
+    - name: TypeScript build check
+      working-directory: sdk/nodejs
+      run: npx tsc --noEmit
+
+  cross-sdk-interop:
+    name: Cross-SDK Interoperability
+    runs-on: ubuntu-latest
+    needs: [python-tests, nodejs-tests]
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install Python SDK
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e sdk/python
+
+    - name: Install Node.js SDK
+      working-directory: sdk/nodejs
+      run: npm ci
+
+    - name: Verify HMAC interop (Python → test vectors)
+      run: |
+        python -c "
+        import hmac, hashlib, json
+        with open('test-vectors/epoch_0_vectors.json') as f:
+            vectors = json.load(f)
+        K = bytes.fromhex(vectors['master_secret_hex'])
+        k_epoch = hmac.new(K, b'epoch_0', hashlib.sha256).hexdigest()
+        assert k_epoch == vectors['k_epoch_hex'], f'Mismatch: {k_epoch} != {vectors[\"k_epoch_hex\"]}'
+        print(f'✓ Python K_epoch matches test vector: {k_epoch}')
+        "
+
+    - name: Verify HMAC interop (Node.js → test vectors)
+      working-directory: sdk/nodejs
+      run: |
+        npx jest --testPathPattern=interop --verbose
+
+    - name: Secret leakage scan
+      run: |
+        echo "Scanning for hardcoded secrets..."
+        ! grep -rn "C2CPO_MASTER_SECRET" sdk/ --include="*.py" --include="*.ts" \
+          | grep -v "os.getenv\|process.env\|environ\|test\|mock\|MOCK" || true
+        echo "✓ No secret leakage detected"

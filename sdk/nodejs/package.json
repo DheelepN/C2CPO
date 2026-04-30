@@ -1,0 +1,48 @@
+{
+  "name": "c2cpo",
+  "version": "1.0.0",
+  "description": "C2CPO — Computer-to-Computer Protocol Obfuscation SDK for Node.js (Tier 1 & 2)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "security",
+    "obfuscation",
+    "api",
+    "protocol",
+    "internal-api",
+    "service-to-service",
+    "hmac",
+    "c2cpo"
+  ],
+  "author": "N Dheelep Sai Gupthaa",
+  "license": "CC-BY-NC-4.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DheelepN/C2CPO.git"
+  },
+  "homepage": "https://github.com/DheelepN/C2CPO",
+  "bugs": {
+    "url": "https://github.com/DheelepN/C2CPO/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^18.15.0",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.0.0"
+  }
+}

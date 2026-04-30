@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "c2cpo"
+version = "1.0.0"
+description = "C2CPO — Computer-to-Computer Protocol Obfuscation SDK (Tier 1 & 2)"
+license = {text = "CC BY-NC 4.0"}
+requires-python = ">=3.10"
+authors = [
+    {name = "N Dheelep Sai Gupthaa"}
+]
+keywords = [
+    "security",
+    "obfuscation",
+    "api",
+    "protocol",
+    "internal-api",
+    "service-to-service",
+    "hmac",
+    "c2cpo",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://github.com/DheelepN/C2CPO"
+Documentation = "https://github.com/DheelepN/C2CPO/tree/main/docs"
+Repository = "https://github.com/DheelepN/C2CPO"
+Issues = "https://github.com/DheelepN/C2CPO/issues"
+Changelog = "https://github.com/DheelepN/C2CPO/blob/main/CHANGELOG.md"
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "pytest-cov>=4.0"]
+
+[tool.setuptools.packages.find]
+include = ["c2cpo*"]
