@@ -2,7 +2,7 @@
   <h1>🛡️ C2CPO</h1>
   <h3>Computer-to-Computer Protocol Obfuscation</h3>
   <p>
-    The <strong>Machine-to-Machine (M2M) framework</strong> within the broader <strong>Security Linguistics</strong> academic domain. It is an open-source SDK that wraps internal service-to-service API communication in an obfuscated, custom-encoded protocol layer.
+    The <strong>Machine-to-Machine (M2M) framework</strong> within the broader <strong>Security Linguistics</strong> academic domain (<a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6003235">read foundation paper</a>). The C2CPO framework itself is detailed <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6172085">in this SSRN preprint</a>. It is an open-source SDK that wraps internal service-to-service API communication in an obfuscated, custom-encoded protocol layer.
   </p>
 
   <p>
@@ -435,7 +435,8 @@ Contact [@DheelepN](https://github.com/DheelepN) to request a commercial license
 ### 🎓 Academic Citation
 
 **Framework paper:**
-> N Dheelep Sai Gupthaa, *C2CPO: Computer-to-Computer Protocol Obfuscation v4.1*, 2026.
+> N Dheelep Sai Gupthaa, *C2CPO: Computer-to-Computer Protocol Obfuscation v4.1*, SSRN:6172085, 2026.  
+> [https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6172085](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6172085)
 
 **Parent research (Security Linguistics):**
 > N Dheelep Sai Gupthaa, *Security Linguistics*, SSRN:6003235, 2026.  
